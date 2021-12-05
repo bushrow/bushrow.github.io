@@ -1,0 +1,22 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    background-image: url("./images/background.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+}
+
+.content-wrapper {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.content {
+    position: relative;
+    top: 50%;
+    left: 1%;
+}
