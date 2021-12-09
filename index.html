@@ -19,11 +19,16 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="menu-bar">
-            <a class="active" href="/">Home</a>
-            <a href="/">News</a>
-            <a href="/">Contact</a>
-            <a href="/">About</a>
+        <div class="menu-bar" id="menu-bar">
+            <a class="active-btn" href="/">Home</a>
+            <a href="#" onclick="select_link(this);">About</a>
+            <a href="#" onclick="select_link(this);">Resume</a>
+            <a href="#" onclick="select_link(this);">Projects</a>
+            <a href="#" onclick="select_link(this);">Contact</a>
+            <a href="javascript:void(0);" class="icon" onclick="shrink_nav()">
+                <img class="hamburger" src="./images/hamburger-menu.png">
+        </div>
+        </a>
         </div>
         <div class="content-wrapper">
             <div class="content">
