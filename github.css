@@ -3,20 +3,47 @@
 }
 
 body {
-    background-image: url("./images/background.gif");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
+    background-color: #1b1b1b;
+    overflow: hidden;
 }
 
 .content-wrapper {
     width: 100vw;
     height: 100vh;
-    text-align: center;
 }
 
 .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.content .title {
+    width: 75vw;
+    text-align: center;
+    display: block;
     position: relative;
+}
+
+.content .title img {
+    width: 500px;
+    transform: translate(calc(-50% + 8px), 33%);
+    margin: 0;
+    position: absolute;
+    bottom: 50%;
+}
+
+.content .title div {
+    width: 100%;
+    position: absolute;
     top: 50%;
-    left: 1%;
+}
+
+.content .title p {
+    color: #9b3654;
+    font-family: monospace;
+    font-size: 35px;
+    margin: 0;
 }
