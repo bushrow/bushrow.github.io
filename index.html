@@ -23,7 +23,7 @@
         <div class="content-wrapper">
             <div class="content">
                 <div class="title">
-                    <img src="./images/graph-image.gif" />
+                    <img id="graph-image" src="./images/graph-image.gif" />
                     <div>
                         <p>Charlie Bushrow</p>
                     </div>
@@ -31,7 +31,17 @@
             </div>
         </div>
 
-        <script src="" async defer></script>
+        <script type="javascript/text">
+            function restart(id,url) { 
+                \\ restart the gif
+                var img = document.getElementById(id); 
+                img.src = ""; 
+                img.src = url; 
+            }
+
+            window.onload = restart("graph-image", "./images/graph-image.gif")
+
+        </script>
     </body>
 
 </html>
