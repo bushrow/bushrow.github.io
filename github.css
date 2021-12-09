@@ -22,6 +22,7 @@ body {
 
 .content .title {
     width: 75vw;
+    min-width: 450px;
     text-align: center;
     display: block;
     position: relative;
