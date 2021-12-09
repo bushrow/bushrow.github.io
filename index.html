@@ -19,7 +19,17 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
+        <div class="menu-bar" id="menu-bar">
+            <a class="active-btn" href="/">Home</a>
+            <a href="#" onclick="select_link(this);">About</a>
+            <a href="#" onclick="select_link(this);">Resume</a>
+            <a href="#" onclick="select_link(this);">Projects</a>
+            <a href="#" onclick="select_link(this);">Contact</a>
+            <a href="javascript:void(0);" class="icon" onclick="shrink_nav()">
+                <img class="hamburger" src="./images/hamburger-menu.png">
+        </div>
+        </a>
+        </div>
         <div class="content-wrapper">
             <div class="content">
                 <div class="title">
@@ -31,17 +41,7 @@
             </div>
         </div>
 
-        <script type="javascript/text">
-            function restart(id,url) { 
-                // restart the gif
-                var img = document.getElementById(id); 
-                img.src = ""; 
-                img.src = url+"?a="+Math.random(); 
-            }
-
-            window.onload = restart("graph-image", "./images/graph-image.gif")
-
-        </script>
+        <script src="app.js" async defer></script>
     </body>
 
 </html>
