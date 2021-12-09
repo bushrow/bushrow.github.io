@@ -28,7 +28,7 @@ body {
 }
 
 .content .title img {
-    width: 500px;
+    width: 400px;
     transform: translate(calc(-50% + 8px), 33%);
     margin: 0;
     position: absolute;
@@ -44,6 +44,6 @@ body {
 .content .title p {
     color: #9b3654;
     font-family: monospace;
-    font-size: 35px;
+    font-size: 30px;
     margin: 0;
 }
