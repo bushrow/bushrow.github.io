@@ -50,7 +50,7 @@ body {
 
 @media screen and (max-width: 600px) {
   .menu-bar {display: block;}
-  .menu-bar a:not(:first-child) {display: none;}
+  .menu-bar a:not(.active-btn) {display: none;}
   .menu-bar a.icon {
     float: right;
     display: block;

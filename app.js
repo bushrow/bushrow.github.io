@@ -7,12 +7,6 @@ function restart(id, url) {
     img.src = url + "?a=" + Math.random();
 };
 
-function select_link(self) {
-    var current = document.getElementsByClassName("active-btn");
-    current[0].className = "";
-    self.className = "active-btn";
-};
-
 function shrink_nav() {
     var x = document.getElementById("menu-bar");
     if (x.className === "menu-bar") {
