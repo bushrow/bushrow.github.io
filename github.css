@@ -85,7 +85,6 @@ body {
     width: 75vw;
     min-width: 450px;
     text-align: center;
-    display: block;
     position: relative;
 }
 
@@ -94,13 +93,13 @@ body {
     transform: translate(calc(-50% + 8px), 33%);
     margin: 0;
     position: absolute;
-    bottom: 50%;
+    bottom: 150px;
 }
 
 .content .title div {
     width: 100%;
     position: relative;
-    top: 35px;
+    top: -55px;
     animation: fadeIn ease-in-out 2.7s;
 }
 
@@ -114,11 +113,12 @@ body {
 .content .title .message {
     animation: appear linear 4s;
     margin-top: 15px;
+    padding: 0;
 }
 
 @keyframes fadeIn {
-  0% {opacity:0; top: 15px;font-weight: 100;}
-  100% {opacity:0.5;font-weight: 100;}
+  0% {opacity:0; top:-85px; font-weight: 100;}
+  100% {opacity:0.5; font-weight: 100;}
 }
 @keyframes appear {
   0% {opacity:0;}
