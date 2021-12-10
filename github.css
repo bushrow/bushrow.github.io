@@ -1,5 +1,6 @@
 * {
     font-family: monospace;
+    color: white;
 }
 
 body {
@@ -31,7 +32,6 @@ body {
 
 .menu-bar a.active-btn {
   background-color: #9b3654;
-  color: white;
 }
 
 .hamburger {
@@ -100,20 +100,28 @@ body {
 .content .title div {
     width: 100%;
     position: relative;
-    top: 10px;
-    font-weight: 700;
+    top: 35px;
     animation: fadeIn ease-in-out 2.7s;
 }
 
-.content .title p {
+.content .title .name {
     color: #9b3654;
-    font-family: monospace;
     font-size: 30px;
+    font-weight: 700;
     margin: 0;
+}
 
+.content .title .message {
+    animation: appear linear 4s;
+    margin-top: 15px;
 }
 
 @keyframes fadeIn {
-  0% {opacity:0; top: -5px;font-weight: 100;}
+  0% {opacity:0; top: 15px;font-weight: 100;}
   100% {opacity:0.5;font-weight: 100;}
+}
+@keyframes appear {
+  0% {opacity:0;}
+  90% {opacity:0;}
+  100% {opacity: 1;}
 }
