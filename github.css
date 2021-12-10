@@ -99,9 +99,10 @@ body {
 
 .content .title div {
     width: 100%;
-    position: absolute;
-    top: 50%;
-    animation: fadeIn ease 1.5s;
+    position: relative;
+    top: 10px;
+    font-weight: 700;
+    animation: fadeIn ease-in-out 2.7s;
 }
 
 .content .title p {
@@ -113,6 +114,6 @@ body {
 }
 
 @keyframes fadeIn {
-  0% {opacity:0; top: -20px;}
-  100% {opacity:1;top: 0;}
+  0% {opacity:0; top: -5px;font-weight: 100;}
+  100% {opacity:0.5;font-weight: 100;}
 }
