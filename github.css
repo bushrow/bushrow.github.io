@@ -19,7 +19,6 @@ body {
 
 .menu-bar a {
   float: left;
-  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -32,6 +31,7 @@ body {
 
 .menu-bar a.active-btn {
   background-color: #9b3654;
+  color: white;
 }
 
 .hamburger {
