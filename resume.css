@@ -8,12 +8,24 @@ p, li {
     font-size: 0.146in;
 }
 
+.resume-download {
+    width: 100%;
+    position: absolute;
+    top: 75px;
+    text-align: center;
+    animation: appear ease 3s;
+}
+
 .resume-wrapper {
     align-self: flex-start;
-    margin-top: 100px;
+    margin-top: 120px;
     padding-bottom: 50px;
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  .resume {display: none;}
 }
 
 .resume .page {
@@ -23,17 +35,23 @@ p, li {
     box-shadow: 2px 3px #888888;
     padding: .111in .555in;
     background-color: white;
-
     animation: presentResume ease 2.5s;
 }
 
 @media print {
-    .resume .page{
+    body {
+        visibility: hidden;
+    }
+    .resume-wrapper {
+        visibility: visible;
+        background-color: white;
+    }
+    .resume .page {
         width: 8.5in;
         height: 11in;
         border: none;
         box-shadow: none;
-        } 
+    } 
 }
 
 @keyframes presentResume {
