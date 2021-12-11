@@ -8,14 +8,6 @@ p, li {
     font-size: 0.146in;
 }
 
-.resume-download {
-    width: 100%;
-    position: absolute;
-    top: 75px;
-    text-align: center;
-    animation: appear ease 3s;
-}
-
 .resume-wrapper {
     align-self: flex-start;
     margin-top: 120px;
@@ -24,8 +16,32 @@ p, li {
     justify-content: center;
 }
 
+.resume-download {
+    width: 100%;
+    position: absolute;
+    top: 75px;
+    text-align: center;
+    animation: appear ease 3s;
+    visibility: visible;
+    padding: 0;
+}
+.resume-download p {
+    font-family: monospace;
+    color: whitesmoke;
+}
+
+.resume-download .icon {
+    display: none;
+    width: 150px;
+    margin: 0;
+}
+
 @media screen and (max-width: 600px) {
   .resume {display: none;}
+  .resume-download {top: 150px; animation: none;}
+  .resume-download a {text-decoration: none;}
+  .resume-download p {margin-bottom: 40px;}
+  .resume-download .icon {display: inline-block; visibility: visible;}
 }
 
 .resume .page {
@@ -34,8 +50,8 @@ p, li {
     border: 1px solid black;
     box-shadow: 2px 3px #888888;
     padding: .111in .555in;
-    background-color: white;
-    animation: presentResume ease 2.5s;
+    background-color: whitesmoke;
+    animation: presentResume ease-out 2.5s;
 }
 
 @media print {
@@ -44,7 +60,7 @@ p, li {
     }
     .resume-wrapper {
         visibility: visible;
-        background-color: white;
+        background-color: whitesmoke;
     }
     .resume .page {
         width: 8.5in;
