@@ -6,6 +6,7 @@
 body {
     background-color: #1b1b1b;
     overflow: hidden;
+    margin: 0;
 }
 
 .menu-bar {
@@ -15,6 +16,8 @@ body {
     overflow: hidden;
     display: flex;
     justify-content: center;
+    background-color: #1b1b1b;
+    margin-top: 0;
 }
 
 .menu-bar a {
@@ -117,8 +120,8 @@ body {
 }
 
 @keyframes fadeIn {
-  0% {opacity:0; top:-85px; font-weight: 100;}
-  100% {opacity:0.5; font-weight: 100;}
+  from {opacity:0; top:-85px; font-weight: 100;}
+  to {opacity:0.5; font-weight: 100;}
 }
 @keyframes appear {
   0% {opacity:0;}

@@ -1,0 +1,158 @@
+body {
+    overflow: auto;
+}
+
+p, li {
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+}
+
+.resume-wrapper {
+    align-self: flex-start;
+    margin-top: 100px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.resume .page {
+    width: 8.5in;
+    height: 11in;
+    border: 1px solid black;
+    box-shadow: 2px 3px #888888;
+    padding: 10px 50px;
+    background-color: white;
+
+    animation: presentResume ease 2.5s;
+}
+
+@media print {
+    .resume .page{
+        width: 8.5in;
+        height: 11in;
+        border: none;
+        box-shadow: none;
+        } 
+}
+
+@keyframes presentResume {
+    from {position:relative; top: -13in;}
+    to {position:relative; top:0;}
+}
+
+.resume .header {
+    text-align: center;
+    margin: 14px;
+}
+
+.resume .header .name {
+    font-size: 22px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.resume .header .header-title {
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+
+.resume .two-cols {
+    width: 100%;
+    margin: 0;
+}
+
+
+.resume .thin-left {
+    width: calc(30% - 40px);
+    float: left;
+    padding: 20px;
+    text-align: center;
+}
+
+.resume .contact-link {
+    text-decoration: none;
+    color: black;
+}
+
+.resume .section {
+    margin-bottom: 30px;
+}
+
+.resume .section-header {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.resume .section-content {
+    margin: 0;
+}
+
+.resume .section p {
+    margin: 10px;
+}
+
+.resume .icon {
+    width: 18px;
+    height: 18px;
+}
+
+.resume .header-with-icon {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    margin-left: -27px;
+    padding: 0;
+}
+
+.resume .header-with-icon .section-header {
+    margin: 0;
+    margin-left: 18px;
+}
+
+
+.resume .line-with-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 0;
+
+}
+
+.resume .line-with-icon p {
+    margin: 0;
+    margin-left: 12px;
+}
+
+.resume .thick-right {
+    width: calc(70% - 40px);
+    float: right;
+    padding: 20px;
+}
+
+.resume .thick-right .section-content {
+    border-left: 2px black solid;
+    margin-left: -20px;
+    padding-left: 18px;
+}
+
+.resume .thick-right .entry {
+    margin-bottom: 16px;
+}
+
+.resume .thick-right .entry-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.resume .thick-right .entry-subtitle {
+    color: grey;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.resume ul {
+    padding-left: 25px;
+}
