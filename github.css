@@ -119,6 +119,17 @@ body {
     padding: 0;
 }
 
+.content .resume-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content .resume-preview div{
+  text-align: center;
+  margin: 5vw;
+}
+
 @keyframes fadeIn {
   from {opacity:0; top:-85px; font-weight: 100;}
   to {opacity:0.5; font-weight: 100;}
