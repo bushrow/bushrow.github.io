@@ -1,0 +1,64 @@
+.business-card {
+    width: 7in;
+    height: 4in;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    border-radius: 25px;
+}
+
+.business-card .bus-img {
+    width: 50%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+.business-card .bus-img img {
+    width: 3in;
+}
+
+.business-card .details{
+    width: 50%;
+    justify-self: right;
+}
+
+.business-card .title {
+    text-align: left;
+    padding-left: 8px;;
+}
+
+.business-card .title .name {
+    color: black;
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.business-card .title .sub-title {
+    color: black;
+    font-size: 20px;
+    margin-top: 4px;
+}
+
+.business-card .links .icon {
+    width: 18px;
+    height: 18px;
+}
+
+
+.business-card .links .line-with-icon {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 10px;
+    padding: 0;
+
+}
+
+.business-card .links .line-with-icon p {
+    margin: 0;
+    margin-left: 12px;
+    color: black;
+    font-size: 14px;
+}

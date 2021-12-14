@@ -21,7 +21,7 @@ p, li {
     position: absolute;
     top: 75px;
     text-align: center;
-    animation: appear ease 3s;
+    animation: appear ease 2s;
     visibility: visible;
     padding: 0;
 }
@@ -51,7 +51,7 @@ p, li {
     box-shadow: 2px 3px #888888;
     padding: .111in .555in;
     background-color: whitesmoke;
-    animation: presentResume ease-out 2.5s;
+    animation: presentResume ease-out 1.5s;
 }
 
 @media print {
