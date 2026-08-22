@@ -1,0 +1,93 @@
+/* ---- tokens ---- */
+:root {
+  --bg: #1b1b1b;
+  --surface: #232323;
+  --border: #343434;
+  --text: #e8e8e8;
+  --text-muted: #9a9a9a;
+  --accent: #9b3654;      /* fills, rules, borders only. 2.5:1 on --bg, never text */
+  --accent-text: #db6387; /* text and links. 5.04:1 on --bg, 4.6:1 on --surface */
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --maxw: 62rem;
+  --gap: 1.5rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NOTE: the old stylesheet set `overflow: hidden` here, which prevented the
+   document from scrolling at all. Do not reintroduce it. */
+
+a { color: var(--accent-text); }
+
+h1, h2, h3 { line-height: 1.2; margin: 0; }
+
+img { max-width: 100%; height: auto; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section { padding: 4.5rem 0; border-top: 1px solid var(--border); }
+.section:first-of-type { border-top: 0; }
+
+.section-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 0.6rem;
+}
+
+/* ---- skip link ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 200;
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--accent);
+}
+
+/* ---- focus ---- */
+:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
