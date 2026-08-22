@@ -1,12 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>Charlie Bushrow</title>
-  <link rel="canonical" href="https://bushrow.xyz/#work">
-  <meta http-equiv="refresh" content="0; url=/#work">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Charlie Bushrow | Projects</title>
+  <meta name="description"
+    content="Side projects Charlie Bushrow built for himself and hosts on bushrow.xyz.">
+  <link rel="canonical" href="https://bushrow.xyz/pages/projects.html">
+  <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <link rel="stylesheet" href="../css/site.css">
 </head>
+
 <body>
-  <p>This page moved. <a href="/#work">Continue to bushrow.xyz</a>.</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="nav" id="site-nav">
+    <div class="wrap nav-inner">
+      <a class="nav-brand" href="/">CB</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#about">About</a>
+        <a href="./resume.html">Resume</a>
+        <a href="./projects.html" aria-current="page">Projects</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="wrap page-head">
+      <h1>Projects</h1>
+      <p class="lede">
+        Things I built for myself outside of work. These are hobby projects, not professional
+        work: they exist because I wanted them to exist, and they live here because the domain
+        was already sitting around.
+      </p>
+    </header>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="cards">
+
+          <article class="card">
+            <h2 class="card-title">MCU Timeline</h2>
+            <p class="card-desc">
+              Sorts the Marvel films by in-universe chronology rather than release order, and works out
+              which films to watch to follow a given character or to prepare for a specific movie.
+            </p>
+            <ul class="card-tags">
+              <li>TypeScript</li>
+              <li>React</li>
+            </ul>
+            <p class="card-links">
+              <a class="card-live" href="https://bushrow.xyz/mcu-timeline/">View live</a>
+              <span class="card-private">Source private</span>
+            </p>
+          </article>
+
+          <article class="card">
+            <h2 class="card-title">bushrow.xyz Finance</h2>
+            <p class="card-desc">
+              Plain-language tax and finance curriculum with interactive calculators for high-W-2 earners
+              and business owners. It computes and explains the mechanics rather than giving advice.
+            </p>
+            <ul class="card-tags">
+              <li>TypeScript</li>
+              <li>React</li>
+            </ul>
+            <p class="card-links">
+              <a class="card-live" href="https://bushrow.xyz/finance/">View live</a>
+              <span class="card-private">Source private</span>
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p><a href="/">Back to bushrow.xyz</a></p>
+    </div>
+  </footer>
+
+  <script src="../app.js" defer></script>
 </body>
+
 </html>

@@ -8,14 +8,17 @@ go live directly.
 
 ## Layout
 
-- `index.html`: single scrolling landing page (hero, work, about, contact)
+- `index.html`: landing page (hero, about, contact)
 - `pages/resume.html`: full resume
+- `pages/projects.html`: side projects, kept off the landing page on purpose
 - `pages/*.html`: meta-refresh stubs for retired URLs
 - `css/site.css`: design tokens and shared layout
 - `css/resume.css`: resume page only
 - `app.js`: mobile nav toggle
+- `hero.js`: decorative canvas animation behind the hero
 
 ## Adding a project
 
-Copy an `<article class="card">` block in the `#work` section of `index.html`
-and change the title, description, tags, and link.
+Copy an `<article class="card">` block in `pages/projects.html` and change the
+title, description, tags, and link. Projects deliberately do not appear on the
+landing page: they are hobby work, and the landing page is professional.

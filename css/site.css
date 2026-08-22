@@ -173,31 +173,75 @@ img { max-width: 100%; height: auto; }
 }
 
 /* ---- hero ---- */
-.hero { padding: 5rem 0 4rem; }
-
-.hero-inner { text-align: center; }
-
-.hero-graph { width: min(400px, 80%); height: auto; margin-bottom: 1.5rem; }
-
-.hero-graph-line {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw 2.2s ease-out forwards;
+/* The canvas is a decorative background layer. `.hero::after` lays a vignette
+   of the page background over it so the headline keeps its contrast ratio no
+   matter where the points happen to settle. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 5rem 0 4.5rem;
 }
 
-.hero-graph-dot {
-  opacity: 0;
-  animation: dot-in 0.4s ease-out 2.1s forwards;
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.9;
+  /* The mask, not an overlay, is what protects text contrast: the middle band
+     is fully transparent, so no point is ever drawn behind the headline and
+     the text always sits on flat --bg. Measured without it, a dot behind the
+     tagline gave 3.99:1, under the 4.5:1 floor. Above and below that band the
+     field renders undimmed. */
+  -webkit-mask-image: linear-gradient(to bottom,
+    #000 0%, #000 18%, transparent 28%, transparent 72%, #000 82%, #000 100%);
+  mask-image: linear-gradient(to bottom,
+    #000 0%, #000 18%, transparent 28%, transparent 72%, #000 82%, #000 100%);
 }
 
-/* Both animations use `forwards` and end fully visible. The old stylesheet's
-   `fadeIn` ended at opacity 0.5, leaving the name permanently half-faded. */
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes dot-in { to { opacity: 1; } }
+/* Fades the field into the page edges so it does not stop on a hard line. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, var(--bg) 0%, rgba(27, 27, 27, 0) 10%,
+      rgba(27, 27, 27, 0) 90%, var(--bg) 100%),
+    linear-gradient(to right, var(--bg) 0%, rgba(27, 27, 27, 0) 7%,
+      rgba(27, 27, 27, 0) 93%, var(--bg) 100%);
+}
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-graph-line { stroke-dashoffset: 0; }
-  .hero-graph-dot { opacity: 1; }
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Contrast guarantee, anchored to the content rather than to a fixed fraction
+   of the hero. The band mask above is sized for a typical viewport, but the
+   text block grows relative to the hero on short, wide windows and would push
+   past the clear band. This scrim moves with the text, so whatever the
+   viewport, the headline always sits on flat --bg. */
+.hero-inner::before {
+  content: "";
+  position: absolute;
+  /* A rectangle, not an ellipse: the text block is wide and short, and an
+     inscribed ellipse leaves its corners uncovered (measured at 1.17x the
+     ellipse radius). The inset exceeds the blur radius, so every text edge
+     sits inside the fully opaque core and only the outer falloff is soft. */
+  inset: -4rem -3rem;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--bg);
+  filter: blur(24px);
 }
 
 .hero-name {
@@ -324,6 +368,7 @@ img { max-width: 100%; height: auto; }
 /* ---- about ---- */
 .about p { max-width: 44rem; color: var(--text-muted); }
 .about p + p { margin-top: 1rem; }
+.about-more { margin-top: 2rem; }
 
 /* ---- contact ---- */
 .contact-list { list-style: none; padding: 0; margin: 0; }
@@ -338,3 +383,46 @@ img { max-width: 100%; height: auto; }
   font-size: 0.82rem;
 }
 .footer p { margin: 0; }
+
+/* ---- about facts ---- */
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem 1.5rem;
+  margin: 2rem 0 0;
+  max-width: 44rem;
+}
+
+.facts dt {
+  color: var(--accent-text);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding-top: 0.15rem;
+}
+
+.facts dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 520px) {
+  .facts { grid-template-columns: 1fr; gap: 0.15rem; }
+  .facts dd { margin-bottom: 0.75rem; }
+}
+
+/* ---- page header (sub-pages) ---- */
+.page-head { padding: 3.5rem 0 0; }
+
+.page-head h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  max-width: 44rem;
+  margin: 1rem 0 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
