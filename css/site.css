@@ -7,6 +7,15 @@
   --text-muted: #9a9a9a;
   --accent: #9b3654;      /* fills, rules, borders only. 2.5:1 on --bg, never text */
   --accent-text: #db6387; /* text and links. 5.04:1 on --bg, 4.6:1 on --surface */
+  /* Paper. Documents on this site render light: the resume sheet and the
+     contact card. The tint carries a faint rose cast pulled from the crimson
+     so it reads as part of this palette rather than generic cream.
+     Measured on --paper: --ink 14.04:1, --ink-soft 6.20:1, --accent 5.91:1. */
+  --paper: #f2ecee;
+  --paper-edge: #d8cbd0;
+  --ink: #241e21;
+  --ink-soft: #5f545a;
+
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --maxw: 62rem;
   --gap: 1.5rem;
@@ -170,6 +179,45 @@ img { max-width: 100%; height: auto; }
   }
   .nav-links.is-open { display: flex; }
   .nav-links a { padding: 0.75rem 0; }
+}
+
+/* ---- short pages ----
+   A page whose content is much shorter than the viewport (contact) otherwise
+   sits top-aligned above a screen of empty dark, which reads emptier than the
+   page it replaced. Centring the block composes it instead. Uses min-height,
+   so longer content still scrolls normally. */
+.page-short {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-short main {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page-short .page-head { padding-top: 0; }
+.page-short .section { padding: 2rem 0 0; border-top: 0; }
+
+/* ---- landing: one viewport, no scroll ----
+   min-height rather than height, so a short viewport (landscape phone) grows
+   and scrolls instead of clipping the buttons off the bottom. */
+.landing {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing .hero {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 2rem 0 3rem;
 }
 
 /* ---- hero ---- */
@@ -370,10 +418,110 @@ img { max-width: 100%; height: auto; }
 .about p + p { margin-top: 1rem; }
 .about-more { margin-top: 2rem; }
 
-/* ---- contact ---- */
-.contact-list { list-style: none; padding: 0; margin: 0; }
-.contact-list li + li { margin-top: 0.6rem; }
-.contact-list a { font-size: 1.02rem; }
+/* ---- contact card ----
+   An actual business card: 3.5x2 landscape proportions, monogram, identity
+   block, details set along the bottom. Named .vcard rather than .card so it
+   cannot collide with the project cards, which are dark. */
+.vcard {
+  max-width: 30rem;
+  aspect-ratio: 1.75 / 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 4px;
+  padding: 1.6rem 1.9rem 1.6rem 2.1rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Spot colour bled off the left edge, the way a printed card carries its ink. */
+.vcard::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--accent);
+}
+
+.vcard-mono {
+  margin: 0 0 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+}
+
+/* Identity left, details right, both sitting on the card's baseline. Stacked
+   left-aligned they left the right half of the card empty. */
+.vcard-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem 1.5rem;
+}
+
+.vcard-name {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.vcard-role {
+  margin: 0.25rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.vcard-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+/* No field labels: a business card does not caption its own phone number, and
+   each value already says what it is. The underline is what still marks the
+   links as links without them. */
+.vcard-list a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--paper-edge);
+}
+
+.vcard-list a:hover,
+.vcard-list a:focus-visible {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Below the card's own width the fixed ratio would squash the text, and the
+   two columns get too tight to read, so the card grows tall and stacks.
+   This block sits after the rules it overrides: at equal specificity source
+   order decides, and placed above them it silently lost. */
+@media (max-width: 34rem) {
+  .vcard {
+    aspect-ratio: auto;
+    max-width: none;
+    padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+  }
+  .vcard-foot { display: block; }
+  .vcard-list { text-align: left; margin-top: 1.25rem; }
+}
 
 /* ---- footer ---- */
 .footer {
@@ -413,7 +561,9 @@ img { max-width: 100%; height: auto; }
 }
 
 /* ---- page header (sub-pages) ---- */
-.page-head { padding: 3.5rem 0 0; }
+/* padding-top only: a shorthand here would wipe .wrap's horizontal gutter
+   and run the heading flush to the viewport edge on narrow screens. */
+.page-head { padding-top: 3.5rem; }
 
 .page-head h1 {
   font-size: clamp(1.8rem, 5vw, 2.6rem);

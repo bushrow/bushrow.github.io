@@ -8,14 +8,20 @@ go live directly.
 
 ## Layout
 
-- `index.html`: landing page (hero, about, contact)
-- `pages/resume.html`: full resume
+- `index.html`: landing page. One viewport, no scroll: name, blurb, buttons, nav.
+- `pages/about.html`: bio and background
+- `pages/resume.html`: full resume, rendered as a light sheet
 - `pages/projects.html`: side projects, kept off the landing page on purpose
-- `pages/*.html`: meta-refresh stubs for retired URLs
+- `pages/contact.html`: business card
+- `pages/resume-select.html`: meta-refresh stub for a retired URL
 - `css/site.css`: design tokens and shared layout
 - `css/resume.css`: resume page only
 - `app.js`: mobile nav toggle
 - `hero.js`: decorative canvas animation behind the hero
+
+The site is dark. The two things that are documents, the resume and the
+contact card, render light on it. That is where `--paper` and `--ink` are used;
+everywhere else uses `--bg` and `--text`.
 
 ## Adding a project
 

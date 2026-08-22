@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="./css/site.css">
 </head>
 
-<body>
+<body class="landing">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <nav class="nav" id="site-nav">
@@ -38,78 +38,29 @@
         <span class="visually-hidden">Menu</span>
       </button>
       <div class="nav-links" id="nav-links">
-        <a href="#about">About</a>
+        <a href="./pages/about.html">About</a>
         <a href="./pages/resume.html">Resume</a>
         <a href="./pages/projects.html">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="./pages/contact.html">Contact</a>
       </div>
     </div>
   </nav>
 
-  <main id="main">
-    <header class="hero">
-      <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
-      <div class="wrap hero-inner">
-        <h1 class="hero-name">Charlie Bushrow</h1>
-        <p class="hero-role">Data Scientist</p>
-        <p class="hero-tagline">
-          I build generative AI and NLP systems that run in production: multi-agent workflows,
-          retrieval systems, and model evaluation.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="./pages/resume.html">Read the resume</a>
-          <a class="btn" href="#contact">Get in touch</a>
-        </div>
+  <main id="main" class="hero">
+    <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="wrap hero-inner">
+      <h1 class="hero-name">Charlie Bushrow</h1>
+      <p class="hero-role">Data Scientist</p>
+      <p class="hero-tagline">
+        I build generative AI and NLP systems that run in production: multi-agent workflows,
+        retrieval systems, and model evaluation.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="./pages/resume.html">Read the resume</a>
+        <a class="btn" href="./pages/contact.html">Get in touch</a>
       </div>
-    </header>
-
-    <section class="section" id="about">
-      <div class="wrap about">
-        <h2 class="section-title">About</h2>
-        <p>
-          I'm a data scientist at Amazon. I work on generative AI and NLP, including multi-agent
-          workflows, retrieval systems, and the evaluation frameworks used to judge whether a model
-          is ready for production. A large part of the job is turning research code into services
-          other teams can rely on.
-        </p>
-        <p>
-          Before Amazon I spent six years at Booz Allen Hamilton, building analytics and computer
-          vision systems for the Air Force and teaching machine learning to Intelligence Community
-          analysts. I studied industrial and systems engineering at Virginia Tech.
-        </p>
-
-        <dl class="facts">
-          <dt>Currently</dt>
-          <dd>Data Scientist, Amazon (2022 to present)</dd>
-          <dt>Previously</dt>
-          <dd>Lead Data Scientist, Booz Allen Hamilton (2016 to 2022)</dd>
-          <dt>Focus</dt>
-          <dd>Generative AI, NLP, model evaluation, production ML</dd>
-          <dt>Based in</dt>
-          <dd>Falls Church, Virginia</dd>
-        </dl>
-
-        <p class="about-more"><a href="./pages/resume.html">Read the full resume</a></p>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="wrap">
-        <h2 class="section-title">Contact</h2>
-        <ul class="contact-list">
-          <li><a href="mailto:charlie.bushrow@gmail.com">charlie.bushrow@gmail.com</a></li>
-          <li><a href="https://linkedin.com/in/bushrow">linkedin.com/in/bushrow</a></li>
-          <li><a href="https://github.com/bushrow">github.com/bushrow</a></li>
-        </ul>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap">
-      <p>Charlie Bushrow. Built as plain HTML and CSS, served from GitHub Pages.</p>
     </div>
-  </footer>
+  </main>
 
   <script src="./app.js" defer></script>
   <script src="./hero.js" defer></script>
