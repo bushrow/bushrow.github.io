@@ -1,17 +1,18 @@
-window.onload = restart("graph-image", "./images/graph-image.gif");
+// Mobile nav toggle. Keeps aria-expanded in sync with the visible state.
+(function () {
+  var toggle = document.querySelector(".nav-toggle");
+  var links = document.getElementById("nav-links");
+  if (!toggle || !links) return;
 
-function restart(id, url) {
-    // restart the gif
-    var img = document.getElementById(id);
-    img.src = "";
-    img.src = url + "?a=" + Math.random();
-};
+  toggle.addEventListener("click", function () {
+    var open = links.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
 
-function shrink_nav() {
-    var x = document.getElementById("menu-bar");
-    if (x.className === "menu-bar") {
-        x.className += " responsive";
-    } else {
-        x.className = "menu-bar";
-    }
-}
+  // Collapse after tapping a link, so the anchor target is actually visible.
+  links.addEventListener("click", function (e) {
+    if (e.target.tagName !== "A") return;
+    links.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+})();
