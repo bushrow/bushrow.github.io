@@ -1,48 +1,59 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+<html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Charles Bushrow</title>
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/github.css">
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Charlie Bushrow</title>
+  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <link rel="stylesheet" href="./css/site.css">
+</head>
 
-    <body class="background">
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <nav class="menu-bar" id="menu-bar">
-            <a class="active-btn" href="/">Home</a>
-            <a href="./pages/about.html">About</a>
-            <a href="./pages/resume-select.html">Resume</a>
-            <a href="./pages/projects.html">Projects</a>
-            <a href="./pages/contact.html">Contact</a>
-            <a href="javascript:void(0);" class="icon" onclick="shrink_nav()">
-                <img class="hamburger" src="./images/hamburger-menu.png">
-        </nav>
-        </a>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="nav" id="site-nav">
+    <div class="wrap nav-inner">
+      <a class="nav-brand" href="/">CB</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="./pages/resume.html">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="hero">
+      <div class="wrap hero-inner">
+        <svg class="hero-graph" viewBox="0 0 400 120" role="img" aria-label="Line graph trending upward">
+          <polyline class="hero-graph-line" fill="none" stroke="#9b3654" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"
+            points="8,104 60,88 112,96 164,64 216,72 268,40 320,48 392,12" />
+          <circle class="hero-graph-dot" cx="392" cy="12" r="5" fill="#db6387" />
+        </svg>
+        <h1 class="hero-name">Charlie Bushrow</h1>
+        <p class="hero-role">Data Scientist</p>
+        <p class="hero-tagline">
+          I build generative AI and NLP systems that run in production, then keep them honest
+          with the evaluation frameworks that decide when a model is ready to ship.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">View work</a>
+          <a class="btn" href="#contact">Get in touch</a>
         </div>
-        <div class="content-wrapper">
-            <div class="content">
-                <div class="title">
-                    <img id="graph-image" src="./images/graph-image.gif" />
-                    <div>
-                        <p class="name">Charlie Bushrow</p>
-                        <p class="message">improving myself, my skills, <br />and my products daily</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
+    </header>
+  </main>
 
-        <script src="app.js" async defer></script>
-    </body>
+  <script src="./app.js" defer></script>
+</body>
 
 </html>
