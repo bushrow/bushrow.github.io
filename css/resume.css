@@ -87,6 +87,15 @@
 @media print {
   .nav, .footer, .skip-link { display: none; }
   body { background: #fff; color: #000; }
-  .resume-summary, .job li, .certs li, .skills dd, .edu-meta, .resume-contact { color: #222; }
+
+  /* Every colour restated below is tuned for the dark theme and has to be
+     re-declared for paper. Left off this list, `.job h4` printed at 1.23:1 on
+     white (invisible), and the section labels and dates at 2.81:1. */
+  .resume-summary, .job li, .certs li, .skills dd, .edu-meta,
+  .resume-contact, .job-date { color: #222; }
+  .job h4, .resume-section h2, .resume-role, .job-role,
+  .skills dt { color: #000; }
+  .resume-section h2 { border-bottom-color: #000; }
+
   a { color: #000; }
 }
