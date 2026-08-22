@@ -251,3 +251,87 @@ img { max-width: 100%; height: auto; }
   border-color: #b0405f;
   color: #fff;
 }
+
+/* ---- anchor offset ---- */
+/* The nav is position:sticky with a ~3.5rem footprint. Without this, jumping to
+   #work or #contact lands the section's top edge underneath the nav and hides
+   its heading. Applies to the scroll target, not the scroller. */
+.section { scroll-margin-top: 4.5rem; }
+
+/* ---- cards ---- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--gap);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover { border-color: var(--accent); }
+
+.card-title { font-size: 1.15rem; color: var(--text); }
+
+.card-desc { color: var(--text-muted); font-size: 0.95rem; margin: 0.75rem 0 1rem; }
+
+.card-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  margin: 0 0 1.25rem;
+}
+
+.card-tags li {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0.2rem 0.5rem;
+}
+
+.card-links {
+  margin: auto 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card-live { font-size: 0.92rem; text-decoration: none; }
+.card-live:hover { text-decoration: underline; }
+.card-live::after { content: " \2192"; }
+
+.card-private {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---- about ---- */
+.about p { max-width: 44rem; color: var(--text-muted); }
+.about p + p { margin-top: 1rem; }
+
+/* ---- contact ---- */
+.contact-list { list-style: none; padding: 0; margin: 0; }
+.contact-list li + li { margin-top: 0.6rem; }
+.contact-list a { font-size: 1.02rem; }
+
+/* ---- footer ---- */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+.footer p { margin: 0; }
