@@ -109,6 +109,7 @@ img { max-width: 100%; height: auto; }
   top: 0;
   z-index: 100;
   background: rgba(27, 27, 27, 0.92);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
@@ -253,9 +254,11 @@ img { max-width: 100%; height: auto; }
 }
 
 /* ---- anchor offset ---- */
-/* The nav is position:sticky with a ~3.5rem footprint. Without this, jumping to
-   #work or #contact lands the section's top edge underneath the nav and hides
-   its heading. Applies to the scroll target, not the scroller. */
+/* The nav is position:sticky at ~57px. `.section`'s own 4.5rem top padding
+   already clears it by ~15px, so this is not a fix for a hidden heading. It
+   raises the gap to ~87px so a jumped-to heading reads as a heading rather
+   than sitting flush under the nav, and keeps the anchor correct if that
+   padding ever changes. */
 .section { scroll-margin-top: 4.5rem; }
 
 /* ---- cards ---- */
