@@ -1,192 +1,92 @@
-body {
-    overflow: auto;
+/* Resume page. Reflows at any width. Deliberately no fixed-inch page
+   simulation and no `display: none` on small screens: the old stylesheet hid
+   the whole resume below 600px and showed a download link instead. */
+
+.resume { padding: 3rem 1.25rem 4rem; }
+
+.resume-head { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+
+.resume-head h1 {
+  font-size: clamp(1.9rem, 6vw, 2.6rem);
+  letter-spacing: -0.02em;
 }
 
-p, li {
-    color: black;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 0.146in;
+.resume-role {
+  color: var(--accent-text);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 1rem;
 }
 
-.resume-wrapper {
-    align-self: flex-start;
-    margin-top: 120px;
-    padding-bottom: 50px;
-    display: flex;
-    justify-content: center;
+.resume-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
-.resume-download {
-    width: 100%;
-    position: absolute;
-    top: 75px;
-    text-align: center;
-    animation: appear ease 2s;
-    visibility: visible;
-    padding: 0;
-}
-.resume-download p {
-    font-family: monospace;
-    color: whitesmoke;
+.resume-section { margin-top: 2.5rem; }
+
+.resume-section h2 {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 1.5rem;
 }
 
-.resume-download .icon {
-    display: none;
-    width: 150px;
-    margin: 0;
+.resume-summary { color: var(--text-muted); max-width: 46rem; margin: 0; }
+
+.job + .job, .edu + .edu { margin-top: 2rem; }
+
+.job-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
 }
 
-@media screen and (max-width: 600px) {
-  .resume {display: none;}
-  .resume-download {top: 150px; animation: none;}
-  .resume-download a {text-decoration: none;}
-  .resume-download p {margin-bottom: 40px;}
-  .resume-download .icon {display: inline-block; visibility: visible;}
+.job-head h3 { font-size: 1.1rem; }
+
+.job-date { color: var(--text-muted); font-size: 0.85rem; }
+
+.job-role { color: var(--accent-text); font-size: 0.95rem; margin: 0.2rem 0 0; }
+
+.job h4 {
+  font-size: 0.95rem;
+  margin: 1.25rem 0 0.4rem;
+  color: var(--text);
 }
 
-.resume .page {
-    width: 8.5in;
-    height: 11in;
-    border: 1px solid black;
-    box-shadow: 2px 3px #888888;
-    padding: .111in .555in;
-    background-color: whitesmoke;
-    animation: presentResume ease-out 1.5s;
+.job ul, .certs { margin: 0; padding-left: 1.1rem; }
+
+.job li, .certs li { color: var(--text-muted); font-size: 0.93rem; margin-bottom: 0.35rem; }
+
+.certs { list-style: none; padding-left: 0; }
+
+.skills { margin: 0; }
+.skills dt {
+  color: var(--accent-text);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 1rem;
 }
+.skills dd { margin: 0.35rem 0 0; color: var(--text-muted); font-size: 0.93rem; max-width: 46rem; }
+
+.edu-meta { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0; }
 
 @media print {
-    body {
-        visibility: hidden;
-    }
-    .resume-wrapper {
-        visibility: visible;
-        background-color: whitesmoke;
-    }
-    .resume .page {
-        width: 8.5in;
-        height: 11in;
-        border: none;
-        box-shadow: none;
-    } 
-}
-
-@keyframes presentResume {
-    from {position:relative; top: -13in;}
-    to {position:relative; top:0;}
-}
-
-.resume .header {
-    text-align: center;
-    margin: 0.146in;
-}
-
-.resume .header .name {
-    font-size: .236in;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
-
-.resume .header .header-title {
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
-
-
-.resume .two-cols {
-    width: 100%;
-    margin: 0;
-}
-
-
-.resume .thin-left {
-    width: calc(30% - 40px);
-    float: left;
-    padding: 20px;
-    text-align: center;
-}
-
-.resume .contact-link {
-    text-decoration: none;
-    color: black;
-}
-
-.resume .section {
-    margin-bottom: 30px;
-}
-
-.resume .section-header {
-    font-size: 18px;
-    text-transform: uppercase;
-}
-
-.resume .section-content {
-    margin: 0;
-}
-
-.resume .section p {
-    margin: 10px;
-}
-
-.resume .icon {
-    width: 18px;
-    height: 18px;
-}
-
-.resume .header-with-icon {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    margin-left: -27px;
-    padding: 0;
-}
-
-.resume .header-with-icon .section-header {
-    margin: 0;
-    margin-left: 18px;
-}
-
-
-.resume .line-with-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    padding: 0;
-
-}
-
-.resume .line-with-icon p {
-    margin: 0;
-    margin-left: 12px;
-}
-
-.resume .thick-right {
-    width: calc(70% - 40px);
-    float: right;
-    padding: 20px;
-}
-
-.resume .thick-right .section-content {
-    border-left: 2px black solid;
-    margin-left: -20px;
-    padding-left: 18px;
-}
-
-.resume .thick-right .entry {
-    margin-bottom: 16px;
-}
-
-.resume .thick-right .entry-title {
-    font-weight: bold;
-    margin-bottom: 4px;
-}
-
-.resume .thick-right .entry-subtitle {
-    color: grey;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-.resume ul {
-    padding-left: 25px;
+  .nav, .footer, .skip-link { display: none; }
+  body { background: #fff; color: #000; }
+  .resume-summary, .job li, .certs li, .skills dd, .edu-meta, .resume-contact { color: #222; }
+  a { color: #000; }
 }
