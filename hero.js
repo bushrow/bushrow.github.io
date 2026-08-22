@@ -1,9 +1,9 @@
 // Hero background: points scattered across an embedding space, settling into
-// clusters and then drifting. Purely decorative, so the canvas is aria-hidden
-// and nothing here is required for the page to make sense.
+// clusters whose centres then wander slowly. Purely decorative, so the canvas
+// is aria-hidden and nothing here is required for the page to make sense.
 //
-// Under prefers-reduced-motion it paints the settled state once and never
-// starts a loop. It also stops painting while the tab is hidden.
+// Under prefers-reduced-motion it paints one settled frame and never starts a
+// loop. It also stops painting while the tab is hidden.
 (function () {
   var canvas = document.getElementById("hero-canvas");
   if (!canvas || !canvas.getContext) return;
@@ -11,18 +11,26 @@
 
   var EDGE = "155, 54, 84";   // --accent, #9b3654
   var DOT = "219, 99, 135";   // --accent-text, #db6387
-  // The centre of the hero is masked out in CSS so no point is ever drawn
-  // behind the headline. Clusters therefore live in the top and bottom bands,
-  // where the mask lets them render at full strength.
-  var BANDS = [
-    { x: [0.10, 0.26], y: [0.04, 0.20] },
-    { x: [0.62, 0.80], y: [0.03, 0.18] },
-    { x: [0.18, 0.36], y: [0.80, 0.96] },
-    { x: [0.70, 0.88], y: [0.82, 0.97] }
-  ];
-  var CLUSTERS = BANDS.length;
-  var LINK_DIST = 100;         // px; edges only drawn inside a cluster
+
+  var CLUSTERS = 5;
+  var LINK_DIST = 95;         // px; edges only drawn inside a cluster
   var SETTLE_MS = 2600;
+
+  // Centroid wander. Slow enough to read as drift rather than motion: a full
+  // cycle takes the better part of a minute.
+  var DRIFT_PERIOD = [26000, 62000];  // ms
+  var DRIFT_X = 0.085;                // of hero width
+  var DRIFT_Y = 0.045;                // of hero height
+
+  // Clusters spread across the full width. Only their vertical placement
+  // matters for legibility: the CSS mask clears a horizontal band through the
+  // middle, so a cluster drifting toward it fades out rather than colliding
+  // with the headline. Horizontal centre is fine and keeps the field from
+  // reading as four things parked in the corners.
+  var ROWS = [
+    [0.09, 0.21],   // top band
+    [0.79, 0.91]    // bottom band
+  ];
 
   var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var w = 0, h = 0, groups = [], raf = null, start = 0;
@@ -30,8 +38,6 @@
   function rand(a, b) { return a + Math.random() * (b - a); }
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
-  // Build the point field. Each point knows where it starts (scattered) and
-  // where it belongs (its cluster), and interpolates between the two.
   function build() {
     var rect = canvas.getBoundingClientRect();
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -43,22 +49,50 @@
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    var total = Math.max(56, Math.min(180, Math.round(w / 7)));
-    var spread = Math.min(w, h) * 0.142;
+    var total = Math.max(60, Math.min(190, Math.round(w / 6.5)));
+    var per = Math.round(total / CLUSTERS);
+    var spread = Math.min(w, h) * 0.125;
+    var ax = w * DRIFT_X;
+    var ay = h * DRIFT_Y;
     groups = [];
 
     for (var c = 0; c < CLUSTERS; c++) {
-      var band = BANDS[c];
-      var cx = w * rand(band.x[0], band.x[1]);
-      var cy = h * rand(band.y[0], band.y[1]);
-      var pts = [];
-      for (var i = 0; i < Math.round(total / CLUSTERS); i++) {
+      // Even spacing across the width with jitter, alternating rows, so the
+      // clusters interleave top and bottom instead of pairing up at the edges.
+      var slot = (c + 0.5) / CLUSTERS;
+      var row = ROWS[c % ROWS.length];
+
+      // Resolve this cluster's own drift amplitude first, then clamp its home
+      // against that amplitude plus the cluster's radius. Clamping against the
+      // base amplitude instead let a cluster with a 1.3x multiplier hang off
+      // the edge and read as clipped rather than drifting.
+      var gax = ax * rand(0.7, 1.3);
+      var gay = ay * rand(0.6, 1.2);
+      // Margin covers the full drift amplitude, the cluster radius (oy is
+      // squashed to 0.78 of it), and the 7px per-point jitter.
+      var mx = gax + spread + 8;
+      var my = gay + spread * 0.78 + 8;
+
+      var g = {
+        cx: Math.min(w - mx, Math.max(mx, w * (slot + rand(-0.05, 0.05)))),
+        cy: Math.min(h - my, Math.max(my, h * rand(row[0], row[1]))),
+        ax: gax,
+        ay: gay,
+        wx: (Math.PI * 2) / rand(DRIFT_PERIOD[0], DRIFT_PERIOD[1]),
+        wy: (Math.PI * 2) / rand(DRIFT_PERIOD[0], DRIFT_PERIOD[1]),
+        px: rand(0, Math.PI * 2),
+        py: rand(0, Math.PI * 2),
+        pts: []
+      };
+
+      for (var i = 0; i < per; i++) {
         // sqrt-ish radius keeps the cluster denser at its centre
         var ang = rand(0, Math.PI * 2);
         var rad = Math.pow(Math.random(), 0.65) * spread;
-        pts.push({
-          hx: cx + Math.cos(ang) * rad,
-          hy: cy + Math.sin(ang) * rad * 0.78,
+        g.pts.push({
+          // offset from the centroid, so the whole cluster travels with it
+          ox: Math.cos(ang) * rad,
+          oy: Math.sin(ang) * rad * 0.78,
           sx: rand(-w * 0.1, w * 1.1),
           sy: rand(-h * 0.1, h * 1.1),
           phase: rand(0, Math.PI * 2),
@@ -69,7 +103,7 @@
           y: 0
         });
       }
-      groups.push(pts);
+      groups.push(g);
     }
     return true;
   }
@@ -78,12 +112,18 @@
     var e = easeOutCubic(Math.min(1, elapsed / SETTLE_MS));
     var t = elapsed / 1000;
     for (var g = 0; g < groups.length; g++) {
-      var pts = groups[g];
-      for (var i = 0; i < pts.length; i++) {
-        var p = pts[i];
-        // drift only fades in as the cluster settles, so the arrival reads clean
-        p.x = p.sx + (p.hx - p.sx) * e + Math.cos(p.phase + t * p.speed) * p.amp * e;
-        p.y = p.sy + (p.hy - p.sy) * e + Math.sin(p.phase * 1.7 + t * p.speed * 0.8) * p.amp * e;
+      var grp = groups[g];
+      // Centroid wander is independent of the settle, so the clusters keep
+      // moving long after the points have arrived.
+      var cx = grp.cx + Math.sin(elapsed * grp.wx + grp.px) * grp.ax;
+      var cy = grp.cy + Math.cos(elapsed * grp.wy + grp.py) * grp.ay;
+      for (var i = 0; i < grp.pts.length; i++) {
+        var p = grp.pts[i];
+        var hx = cx + p.ox;
+        var hy = cy + p.oy;
+        // per-point jitter fades in with the settle, so the arrival reads clean
+        p.x = p.sx + (hx - p.sx) * e + Math.cos(p.phase + t * p.speed) * p.amp * e;
+        p.y = p.sy + (hy - p.sy) * e + Math.sin(p.phase * 1.7 + t * p.speed * 0.8) * p.amp * e;
       }
     }
   }
@@ -93,9 +133,9 @@
     ctx.lineWidth = 1;
 
     // Edges are intra-cluster only, which is what makes the grouping legible.
-    // Iterating per group keeps this at ~3 * (n/3)^2 pairs rather than n^2.
+    // Iterating per group keeps this at CLUSTERS * (n/CLUSTERS)^2 pairs.
     for (var g = 0; g < groups.length; g++) {
-      var pts = groups[g];
+      var pts = groups[g].pts;
       for (var i = 0; i < pts.length; i++) {
         for (var j = i + 1; j < pts.length; j++) {
           var dx = pts[i].x - pts[j].x;
@@ -114,10 +154,10 @@
 
     ctx.fillStyle = "rgba(" + DOT + ",0.92)";
     for (var k = 0; k < groups.length; k++) {
-      for (var m = 0; m < groups[k].length; m++) {
-        var p = groups[k][m];
+      var gp = groups[k].pts;
+      for (var m = 0; m < gp.length; m++) {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.arc(gp[m].x, gp[m].y, gp[m].r, 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -138,7 +178,7 @@
     stop();
     if (!build()) return;
     if (motion.matches) {
-      positionAll(SETTLE_MS);   // paint the settled state, no loop
+      positionAll(SETTLE_MS);   // one settled frame, no loop
       draw();
     } else {
       start = 0;
