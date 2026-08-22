@@ -180,8 +180,8 @@ img { max-width: 100%; height: auto; }
 .hero-graph { width: min(400px, 80%); height: auto; margin-bottom: 1.5rem; }
 
 .hero-graph-line {
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
   animation: draw 2.2s ease-out forwards;
 }
 
