@@ -1,8 +1,2 @@
 docs/
 .DS_Store
-
-# The 2021 resume PDF was tracked, and GitHub Pages therefore published it at
-# bushrow.xyz/resume.pdf with a phone number and stale employment claims. It is
-# untracked until a current PDF replaces it. To publish the new one:
-#   remove this entry, then `git add resume.pdf`
-resume.pdf
