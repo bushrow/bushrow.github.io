@@ -5,8 +5,10 @@
   --border: #343434;
   --text: #e8e8e8;
   --text-muted: #9a9a9a;
-  --accent: #9b3654;      /* fills, rules, borders only. 2.5:1 on --bg, never text */
-  --accent-text: #db6387; /* text and links. 5.04:1 on --bg, 4.6:1 on --surface */
+  --accent: #9b3654;
+  /* fills, rules, borders only. 2.5:1 on --bg, never text */
+  --accent-text: #db6387;
+  /* text and links. 5.04:1 on --bg, 4.6:1 on --surface */
   /* Paper. Documents on this site render light: the resume sheet and the
      contact card. The tint carries a faint rose cast pulled from the crimson
      so it reads as part of this palette rather than generic cream.
@@ -21,9 +23,15 @@
   --gap: 1.5rem;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -38,11 +46,21 @@ body {
 /* NOTE: the old stylesheet set `overflow: hidden` here, which prevented the
    document from scrolling at all. Do not reintroduce it. */
 
-a { color: var(--accent-text); }
+a {
+  color: var(--accent-text);
+}
 
-h1, h2, h3 { line-height: 1.2; margin: 0; }
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0;
+}
 
-img { max-width: 100%; height: auto; }
+img {
+  max-width: 100%;
+  height: auto;
+}
 
 .wrap {
   width: 100%;
@@ -51,8 +69,14 @@ img { max-width: 100%; height: auto; }
   padding: 0 1.25rem;
 }
 
-.section { padding: 4.5rem 0; border-top: 1px solid var(--border); }
-.section:first-of-type { border-top: 0; }
+.section {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.section:first-of-type {
+  border-top: 0;
+}
 
 .section-title {
   font-size: 0.8rem;
@@ -76,6 +100,7 @@ img { max-width: 100%; height: auto; }
   position: absolute;
   left: -9999px;
 }
+
 .skip-link:focus {
   left: 1rem;
   top: 1rem;
@@ -93,8 +118,13 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
@@ -104,8 +134,10 @@ img { max-width: 100%; height: auto; }
 /* ---- a11y helper ---- */
 .visually-hidden {
   position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
@@ -137,7 +169,10 @@ img { max-width: 100%; height: auto; }
   text-decoration: none;
 }
 
-.nav-links { display: flex; gap: 0.35rem; }
+.nav-links {
+  display: flex;
+  gap: 0.35rem;
+}
 
 .nav-links a {
   color: var(--text);
@@ -148,7 +183,10 @@ img { max-width: 100%; height: auto; }
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible { color: var(--accent-text); background: var(--surface); }
+.nav-links a:focus-visible {
+  color: var(--accent-text);
+  background: var(--surface);
+}
 
 .nav-toggle {
   display: none;
@@ -168,8 +206,14 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 640px) {
-  .nav-inner { flex-wrap: wrap; }
-  .nav-toggle { display: block; }
+  .nav-inner {
+    flex-wrap: wrap;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
@@ -177,8 +221,14 @@ img { max-width: 100%; height: auto; }
     padding-bottom: 0.75rem;
     gap: 0;
   }
-  .nav-links.is-open { display: flex; }
-  .nav-links a { padding: 0.75rem 0; }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 0.75rem 0;
+  }
 }
 
 /* ---- short pages ----
@@ -201,8 +251,14 @@ img { max-width: 100%; height: auto; }
   justify-content: center;
 }
 
-.page-short .page-head { padding-top: 0; }
-.page-short .section { padding: 2rem 0 0; border-top: 0; }
+.page-short .page-head {
+  padding-top: 0;
+}
+
+.page-short .section {
+  padding: 2rem 0 0;
+  border-top: 0;
+}
 
 /* ---- landing: one viewport, no scroll ----
    min-height rather than height, so a short viewport (landscape phone) grows
@@ -248,9 +304,9 @@ img { max-width: 100%; height: auto; }
      tagline gave 3.99:1, under the 4.5:1 floor. Above and below that band the
      field renders undimmed. */
   -webkit-mask-image: linear-gradient(to bottom,
-    #000 0%, #000 18%, transparent 28%, transparent 72%, #000 82%, #000 100%);
+      #000 0%, #000 18%, transparent 28%, transparent 72%, #000 82%, #000 100%);
   mask-image: linear-gradient(to bottom,
-    #000 0%, #000 18%, transparent 28%, transparent 72%, #000 82%, #000 100%);
+      #000 0%, #000 18%, transparent 28%, transparent 72%, #000 82%, #000 100%);
 }
 
 /* Fades the field into the page edges so it does not stop on a hard line. */
@@ -331,7 +387,11 @@ img { max-width: 100%; height: auto; }
   font-size: 0.92rem;
 }
 
-.btn:hover, .btn:focus-visible { border-color: var(--accent-text); color: var(--accent-text); }
+.btn:hover,
+.btn:focus-visible {
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
 
 .btn-primary {
   background: var(--accent);
@@ -339,7 +399,8 @@ img { max-width: 100%; height: auto; }
   color: #fff;
 }
 
-.btn-primary:hover, .btn-primary:focus-visible {
+.btn-primary:hover,
+.btn-primary:focus-visible {
   background: #b0405f;
   border-color: #b0405f;
   color: #fff;
@@ -351,7 +412,9 @@ img { max-width: 100%; height: auto; }
    raises the gap to ~87px so a jumped-to heading reads as a heading rather
    than sitting flush under the nav, and keeps the anchor correct if that
    padding ever changes. */
-.section { scroll-margin-top: 4.5rem; }
+.section {
+  scroll-margin-top: 4.5rem;
+}
 
 /* ---- cards ---- */
 .cards {
@@ -369,11 +432,20 @@ img { max-width: 100%; height: auto; }
   flex-direction: column;
 }
 
-.card:hover { border-color: var(--accent); }
+.card:hover {
+  border-color: var(--accent);
+}
 
-.card-title { font-size: 1.15rem; color: var(--text); }
+.card-title {
+  font-size: 1.15rem;
+  color: var(--text);
+}
 
-.card-desc { color: var(--text-muted); font-size: 0.95rem; margin: 0.75rem 0 1rem; }
+.card-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0.75rem 0 1rem;
+}
 
 .card-tags {
   list-style: none;
@@ -402,9 +474,18 @@ img { max-width: 100%; height: auto; }
   gap: 1rem;
 }
 
-.card-live { font-size: 0.92rem; text-decoration: none; }
-.card-live:hover { text-decoration: underline; }
-.card-live::after { content: " \2192"; }
+.card-live {
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+
+.card-live:hover {
+  text-decoration: underline;
+}
+
+.card-live::after {
+  content: " \2192";
+}
 
 .card-private {
   font-size: 0.72rem;
@@ -414,9 +495,18 @@ img { max-width: 100%; height: auto; }
 }
 
 /* ---- about ---- */
-.about p { max-width: 44rem; color: var(--text-muted); }
-.about p + p { margin-top: 1rem; }
-.about-more { margin-top: 2rem; }
+.about p {
+  max-width: 44rem;
+  color: var(--text-muted);
+}
+
+.about p+p {
+  margin-top: 1rem;
+}
+
+.about-more {
+  margin-top: 2rem;
+}
 
 /* ---- contact card ----
    An actual business card: 3.5x2 landscape proportions, monogram, identity
@@ -519,8 +609,15 @@ img { max-width: 100%; height: auto; }
     max-width: none;
     padding: 1.5rem 1.5rem 1.5rem 1.75rem;
   }
-  .vcard-foot { display: block; }
-  .vcard-list { text-align: left; margin-top: 1.25rem; }
+
+  .vcard-foot {
+    display: block;
+  }
+
+  .vcard-list {
+    text-align: left;
+    margin-top: 1.25rem;
+  }
 }
 
 /* ---- footer ---- */
@@ -530,7 +627,10 @@ img { max-width: 100%; height: auto; }
   color: var(--text-muted);
   font-size: 0.82rem;
 }
-.footer p { margin: 0; }
+
+.footer p {
+  margin: 0;
+}
 
 /* ---- about facts ---- */
 .facts {
@@ -556,14 +656,22 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 520px) {
-  .facts { grid-template-columns: 1fr; gap: 0.15rem; }
-  .facts dd { margin-bottom: 0.75rem; }
+  .facts {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .facts dd {
+    margin-bottom: 0.75rem;
+  }
 }
 
 /* ---- page header (sub-pages) ---- */
 /* padding-top only: a shorthand here would wipe .wrap's horizontal gutter
    and run the heading flush to the viewport edge on narrow screens. */
-.page-head { padding-top: 3.5rem; }
+.page-head {
+  padding-top: 3.5rem;
+}
 
 .page-head h1 {
   font-size: clamp(1.8rem, 5vw, 2.6rem);

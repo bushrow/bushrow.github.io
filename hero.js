@@ -9,18 +9,18 @@
   if (!canvas || !canvas.getContext) return;
   var ctx = canvas.getContext("2d");
 
-  var EDGE = "155, 54, 84";   // --accent, #9b3654
-  var DOT = "219, 99, 135";   // --accent-text, #db6387
+  var EDGE = "155, 54, 84"; // --accent, #9b3654
+  var DOT = "219, 99, 135"; // --accent-text, #db6387
 
   var CLUSTERS = 5;
-  var LINK_DIST = 95;         // px; edges only drawn inside a cluster
+  var LINK_DIST = 95; // px; edges only drawn inside a cluster
   var SETTLE_MS = 2600;
 
   // Centroid wander. Slow enough to read as drift rather than motion: a full
   // cycle takes the better part of a minute.
-  var DRIFT_PERIOD = [26000, 62000];  // ms
-  var DRIFT_X = 0.085;                // of hero width
-  var DRIFT_Y = 0.045;                // of hero height
+  var DRIFT_PERIOD = [26000, 62000]; // ms
+  var DRIFT_X = 0.085; // of hero width
+  var DRIFT_Y = 0.045; // of hero height
 
   // Clusters spread across the full width. Only their vertical placement
   // matters for legibility: the CSS mask clears a horizontal band through the
@@ -28,15 +28,23 @@
   // with the headline. Horizontal centre is fine and keeps the field from
   // reading as four things parked in the corners.
   var ROWS = [
-    [0.09, 0.21],   // top band
-    [0.79, 0.91]    // bottom band
+    [0.09, 0.21], // top band
+    [0.79, 0.91], // bottom band
   ];
 
   var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var w = 0, h = 0, groups = [], raf = null, start = 0;
+  var w = 0,
+    h = 0,
+    groups = [],
+    raf = null,
+    start = 0;
 
-  function rand(a, b) { return a + Math.random() * (b - a); }
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function rand(a, b) {
+    return a + Math.random() * (b - a);
+  }
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
 
   function build() {
     var rect = canvas.getBoundingClientRect();
@@ -82,7 +90,7 @@
         wy: (Math.PI * 2) / rand(DRIFT_PERIOD[0], DRIFT_PERIOD[1]),
         px: rand(0, Math.PI * 2),
         py: rand(0, Math.PI * 2),
-        pts: []
+        pts: [],
       };
 
       for (var i = 0; i < per; i++) {
@@ -100,7 +108,7 @@
           amp: rand(2, 7),
           r: rand(1.5, 3.0),
           x: 0,
-          y: 0
+          y: 0,
         });
       }
       groups.push(g);
@@ -122,8 +130,12 @@
         var hx = cx + p.ox;
         var hy = cy + p.oy;
         // per-point jitter fades in with the settle, so the arrival reads clean
-        p.x = p.sx + (hx - p.sx) * e + Math.cos(p.phase + t * p.speed) * p.amp * e;
-        p.y = p.sy + (hy - p.sy) * e + Math.sin(p.phase * 1.7 + t * p.speed * 0.8) * p.amp * e;
+        p.x =
+          p.sx + (hx - p.sx) * e + Math.cos(p.phase + t * p.speed) * p.amp * e;
+        p.y =
+          p.sy +
+          (hy - p.sy) * e +
+          Math.sin(p.phase * 1.7 + t * p.speed * 0.8) * p.amp * e;
       }
     }
   }
@@ -171,14 +183,17 @@
   }
 
   function stop() {
-    if (raf) { window.cancelAnimationFrame(raf); raf = null; }
+    if (raf) {
+      window.cancelAnimationFrame(raf);
+      raf = null;
+    }
   }
 
   function render() {
     stop();
     if (!build()) return;
     if (motion.matches) {
-      positionAll(SETTLE_MS);   // one settled frame, no loop
+      positionAll(SETTLE_MS); // one settled frame, no loop
       draw();
     } else {
       start = 0;
@@ -194,7 +209,10 @@
 
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) stop();
-    else if (!motion.matches && !raf) { start = 0; raf = window.requestAnimationFrame(frame); }
+    else if (!motion.matches && !raf) {
+      start = 0;
+      raf = window.requestAnimationFrame(frame);
+    }
   });
 
   if (motion.addEventListener) motion.addEventListener("change", render);
