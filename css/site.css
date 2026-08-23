@@ -690,11 +690,6 @@ img {
   }
 }
 
-/* A lede that introduces one section rather than the whole page. */
-.section-lede {
-  margin: -1rem 0 2rem;
-}
-
 /* ---- page header (sub-pages) ---- */
 /* padding-top only: a shorthand here would wipe .wrap's horizontal gutter
    and run the heading flush to the viewport edge on narrow screens. */
@@ -712,4 +707,15 @@ img {
   margin: 1rem 0 0;
   color: var(--text-muted);
   font-size: 1rem;
+}
+
+/* A lede introducing one section rather than the whole page. Must come after
+   .lede: both are single-class specificity, and placed above it this lost the
+   cascade, so .lede's `margin: 1rem 0 0` zeroed the bottom margin and the
+   cards sat flush against the paragraph.
+   Top margin stays 0 so the 2rem from .section-title still sets the gap above;
+   the bottom is wider than that, since a paragraph running into a card grid
+   needs more air than a short label does. */
+.section-lede {
+  margin: 0 0 2.75rem;
 }
