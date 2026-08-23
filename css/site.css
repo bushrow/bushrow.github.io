@@ -303,10 +303,24 @@ img {
      the text always sits on flat --bg. Measured without it, a dot behind the
      tagline gave 3.99:1, under the 4.5:1 floor. Above and below that band the
      field renders undimmed. */
-  -webkit-mask-image: linear-gradient(to bottom,
-      #000 0%, #000 18%, transparent 28%, transparent 72%, #000 82%, #000 100%);
-  mask-image: linear-gradient(to bottom,
-      #000 0%, #000 18%, transparent 28%, transparent 72%, #000 82%, #000 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 18%,
+    transparent 28%,
+    transparent 72%,
+    #000 82%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 18%,
+    transparent 28%,
+    transparent 72%,
+    #000 82%,
+    #000 100%
+  );
 }
 
 /* Fades the field into the page edges so it does not stop on a hard line. */
@@ -317,10 +331,20 @@ img {
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(to bottom, var(--bg) 0%, rgba(27, 27, 27, 0) 10%,
-      rgba(27, 27, 27, 0) 90%, var(--bg) 100%),
-    linear-gradient(to right, var(--bg) 0%, rgba(27, 27, 27, 0) 7%,
-      rgba(27, 27, 27, 0) 93%, var(--bg) 100%);
+    linear-gradient(
+      to bottom,
+      var(--bg) 0%,
+      rgba(27, 27, 27, 0) 10%,
+      rgba(27, 27, 27, 0) 90%,
+      var(--bg) 100%
+    ),
+    linear-gradient(
+      to right,
+      var(--bg) 0%,
+      rgba(27, 27, 27, 0) 7%,
+      rgba(27, 27, 27, 0) 93%,
+      var(--bg) 100%
+    );
 }
 
 .hero-inner {
@@ -500,7 +524,7 @@ img {
   color: var(--text-muted);
 }
 
-.about p+p {
+.about p + p {
   margin-top: 1rem;
 }
 
@@ -664,6 +688,11 @@ img {
   .facts dd {
     margin-bottom: 0.75rem;
   }
+}
+
+/* A lede that introduces one section rather than the whole page. */
+.section-lede {
+  margin: -1rem 0 2rem;
 }
 
 /* ---- page header (sub-pages) ---- */
