@@ -50,9 +50,14 @@ a {
   color: var(--accent-text);
 }
 
+/* h4-h6 included: without them a card title promoted to h4 kept the browser
+   default 1.33em margin and opened a gap above its description. */
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.2;
   margin: 0;
 }
@@ -654,6 +659,28 @@ img {
 
 .footer p {
   margin: 0;
+}
+
+/* ---- project groups ----
+   A level below .section-title: lowercase and unruled, so it reads as a quiet
+   annotation on the cards rather than competing with the section heading. */
+.group + .group { margin-top: 2.75rem; }
+
+.group-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 0.9rem;
+}
+
+/* Pinned to two columns rather than auto-fit: a group holding one card would
+   otherwise stretch it to full width and make it look featured, wider than
+   the pair above it. Below the breakpoint the base .cards rule stacks them. */
+@media (min-width: 820px) {
+  .group .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* ---- about facts ---- */
