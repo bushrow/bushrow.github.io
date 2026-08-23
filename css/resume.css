@@ -93,19 +93,25 @@
   max-width: 46rem;
 }
 
-/* ---- two-column body ---- */
+/* ---- two-column body ----
+   One variable drives both the gap between stacked columns and the gap
+   between sibling sections, because when the grid collapses they are the same
+   rhythm. They were separate values before, and the stacked gap was 0: every
+   section had 36px above it except Skills, which is the aside's first child
+   and so has no sibling to take a margin from. */
 .sheet-cols {
+  --section-gap: 2.25rem;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 16rem;
-  gap: 2.5rem 3rem;
-  margin-top: 2.25rem;
+  gap: var(--section-gap) 3rem;
+  margin-top: var(--section-gap);
 }
 
 @media (max-width: 820px) {
-  .sheet-cols { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .sheet-cols { grid-template-columns: minmax(0, 1fr); }
 }
 
-.sheet-section + .sheet-section { margin-top: 2.25rem; }
+.sheet-section + .sheet-section { margin-top: var(--section-gap); }
 
 .sheet-section h2 {
   font-size: 0.72rem;
